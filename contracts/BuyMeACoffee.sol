@@ -39,13 +39,35 @@ contract BuyMeACoffee {
     function buyCoffee(string memory _name, string memory _message) {
         require(msg.value > 0, "can't buy a coffee with 0 eth");
 
+        // Add the memo to storage!
         memos.push(Memo(
             msg.sender,
             block.timestamp,
             _name,
             _message
-
-        )
+        ));
+            // Emit a log event when a new memo is created!
+        emit NewMemo(
+            msg.sender,
+            block.timestamp,
+            _name,
+            _message
+        );
         
+    }
+
+    /**
+    * @dev send the entire balance stored in this contract owner
+    */
+    function withdrawTips() public {
+        address(this).balance
+        require(owner.send(address(this).balance));
+    }
+
+     /**
+    * @dev retrieve all the memos received and stored on the blockchain
+    */
+    function getMemos() public  returns(Memo[] memory) {
+        return memos;
     }
 }
