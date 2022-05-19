@@ -3,6 +3,8 @@ pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
 
+// Deployed to Goerli at 0xbC79eC6c89337bDd00Ef7c07FaB0598247F0F9CA
+
 contract BuyMeACoffee {
     // Event to emit when a Memo is created
     event NewMemo(
